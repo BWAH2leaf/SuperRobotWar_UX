@@ -29,7 +29,7 @@ def unpacking(FileName):
         for count, x in enumerate( indexTable[:-1] ):
             F.seek( indexTable[ count ] )
             newData = F.read( indexTable[ count+1 ] - indexTable[ count ] )
-            with open( path+FileName+"."+"{0:0>6}".format(count)+'.bin', 'wb') as NF:
+            with open( path+FileName.split(".")[0]+"."+"{0:0>6}".format(count)+'.bin', 'wb') as NF:
                 NF.write( newData )
             
     pass
@@ -47,6 +47,10 @@ def packing(FolderName):
     for i in glob.glob( path ):
         with open(i , 'rb') as F:
             temp  = F.read()
+            
+            if not (len(temp)%128) == 0:
+                temp += bytes( 128-(len(temp)%128) )
+            
 
         fData += temp
         table += pack('<L', len(fData) )
@@ -62,5 +66,5 @@ def packing(FolderName):
 if __name__ == '__main__':
     print( 'Program Start' )
     
-    #unpacking('arcBtlMsgDat.bin') # fileName.  
-    packing('org.arcBtlMsgDat.bin') # FolderName.
+    unpacking('arcBtlMsgDat.bin') # fileName.  
+    #packing('org.arcBtlMsgDat.bin') # FolderName.
