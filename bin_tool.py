@@ -20,11 +20,18 @@ def unpacking(FileName):
         
         while True:
             temp = F.read(4)
+            if temp.hex() == '00000000':
+                break
+            else:
+                indexTable.append( unpack('<L', temp)[0] )
+
+            '''
             if unpack('<L', temp)[0] == fileSize:
                 indexTable.append( unpack('<L', temp)[0] )
                 break
             else:
                 indexTable.append( unpack('<L', temp)[0] )
+                #'''
 
         for count, x in enumerate( indexTable[:-1] ):
             F.seek( indexTable[ count ] )
@@ -66,5 +73,8 @@ def packing(FolderName):
 if __name__ == '__main__':
     print( 'Program Start' )
     
-    unpacking('arcBtlMsgDat.bin') # fileName.  
+    #unpacking('arcTacPrmDat.bin') # fileName.
     #packing('org.arcBtlMsgDat.bin') # FolderName.
+
+    #unpacking('arcTacPrmDat.bin') # fileName.
+    packing('org.arcTacPrmDat.bin - 복사본') # FolderName.
