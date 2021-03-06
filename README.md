@@ -1,5 +1,5 @@
 # SuperRobotWar_UX
-3DS SuperRobotWarUX translate "ja" to "ko"
+3DS SuperRobotWarUX translate tools for "ja" to "ko"
 
 # bin_tool
 split romFS files. arcBtlGrpDat.bin, arcBtlPrmDat.bin... etc
