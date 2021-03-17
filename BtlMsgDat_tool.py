@@ -9,7 +9,7 @@ from struct import *
 import glob
 
 def export_JSON( FileName ):
-    print( '[ %s ] export CSV...' % FileName )
+    print( '[ %s ] export JSON...' % FileName )
     with open( FileName, 'rb' ) as F:
         FileHeader = F.read(6)
         bTable00End = unpack('<h', F.read(2))[0]
